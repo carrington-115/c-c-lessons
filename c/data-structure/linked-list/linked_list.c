@@ -7,13 +7,32 @@ typedef struct node
     struct node *next;
 } node;
 
-void fill_linked_list()
+int main(int argc, char *argv[])
 {
-    node *n = malloc(sizeof(node));
-    n->number = 1;
-    n->next = NULL;
-}
+    char *args[] = {"1", "2", "3"};
+    argc = 3;
+    argv = args;
+    node *list = NULL;
 
-int main(void)
-{
+    for (int i = 0; i < argc; i++)
+    {
+        node *n = malloc(sizeof(node));
+
+        if (n == NULL)
+        {
+            // Free memory some how
+        }
+        int number = atoi(argv[i]);
+        n->number = number;
+        n->next = list;
+        list = n;
+    }
+
+    // printing
+    node *ptr = list;
+    while (ptr != NULL)
+    {
+        printf("List Element: %d\n", ptr->number);
+        ptr = ptr->next;
+    }
 }
